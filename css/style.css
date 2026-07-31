@@ -321,6 +321,23 @@ a:hover { color: var(--terracotta); }
 }
 .fact .value { font-weight: 600; color: var(--forest-deep); font-size: 15px; }
 .fact .value.small { font-size: 13.5px; font-weight: 500; color: var(--muted); }
+.fact-photo {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 20px;
+}
+.fact-photo img {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 3px solid var(--terracotta);
+  flex-shrink: 0;
+}
+.fact-photo .label { margin-bottom: 4px; }
 
 /* ---------- Skills ---------- */
 .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }

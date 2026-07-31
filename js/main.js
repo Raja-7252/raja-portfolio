@@ -81,6 +81,37 @@
     highlightNav();
   }
 
+  var counterHosts = document.querySelectorAll(".hero-meta");
+  if (counterHosts.length && "IntersectionObserver" in window) {
+    var counterObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.querySelectorAll(".count").forEach(function (el) {
+            var target = parseInt(el.getAttribute("data-target"), 10) || 0;
+            var duration = 1200;
+            var start = null;
+            function step(ts) {
+              if (!start) start = ts;
+              var p = Math.min((ts - start) / duration, 1);
+              var eased = 1 - Math.pow(1 - p, 3);
+              el.textContent = Math.round(eased * target);
+              if (p < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+          });
+          counterObserver.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.3 }
+    );
+    counterHosts.forEach(function (el) { counterObserver.observe(el); });
+  } else {
+    document.querySelectorAll(".count").forEach(function (el) {
+      el.textContent = el.getAttribute("data-target") || "0";
+    });
+  }
+
   if (window.location.hash) {
     setTimeout(function () {
       var target = document.querySelector(window.location.hash);

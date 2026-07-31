@@ -329,8 +329,8 @@ a:hover { color: var(--terracotta); }
   padding: 20px 22px;
 }
 .fact-photo img {
-  width: 76px;
-  height: 76px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
